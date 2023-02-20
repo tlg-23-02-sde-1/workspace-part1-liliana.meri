@@ -57,7 +57,7 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    @Override
+    @Override //log each employee
     public String toString() {
         return "Employee: name=" + getName() + ", hireDate=" + getHireDate();
     }
