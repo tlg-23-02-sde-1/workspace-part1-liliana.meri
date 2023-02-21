@@ -8,6 +8,7 @@ public class HourlyEmployee extends Employee {
 
     //ctors, super ctor
     public HourlyEmployee() {
+        super();
     }
 
     public HourlyEmployee(String name, LocalDate hireDate) {
@@ -18,6 +19,12 @@ public class HourlyEmployee extends Employee {
         this(name, hireDate);
         setRate(rate);
         setHours(hours);
+    }
+
+    //methods
+    @Override
+    public void pay() {
+        System.out.println(getName() + "is paid hourly " + (getRate() * getHours()));
     }
 
     //getters/setters
@@ -38,10 +45,8 @@ public class HourlyEmployee extends Employee {
     }
 
     // toString employee
+    @Override
     public String toString() {
-        return "HourlyEmployee: name=" + getName() +
-                ", hireDate=" + getHireDate() +
-                ", rate=" + getRate() +
-                ", hours=" + getHours();
+        return super.toString() + ", rate=" + getRate() + ", hours=" + getHours();
     }
 }

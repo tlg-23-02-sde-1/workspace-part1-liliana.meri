@@ -7,6 +7,7 @@ public class SalariedEmployee extends Employee {
 
     //ctors, super ctor
     public SalariedEmployee() {
+        super(); // super is in here even if you dont write it
     }
 
     public SalariedEmployee(String name, LocalDate hireDate) {
@@ -19,6 +20,12 @@ public class SalariedEmployee extends Employee {
         setSalary(salary);
     }
 
+    //methods
+    @Override
+    public void pay() {
+        System.out.println(getName() + "is paid salary " + getSalary());
+    }
+
     //getters/setters
     public double getSalary() {
         return salary;
@@ -29,9 +36,8 @@ public class SalariedEmployee extends Employee {
     }
 
     //to string employee
+    @Override
     public String toString() {
-        return "SalariedEmployee: name=" + getName() +
-                ", hireDate=" + getHireDate() +
-                ", salary=" + getSalary();
+        return super.toString() + ", salary=" + getSalary();
     }
 }

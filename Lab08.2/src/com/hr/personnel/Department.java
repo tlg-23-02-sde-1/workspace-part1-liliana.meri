@@ -31,9 +31,11 @@ public class Department {
 
     // constructors
     public Department() {
+        super(); // a superclass ctor is always called, whether you say it or not
     }
 
     public Department(String name, String location) {
+        super();
         setName(name);
         setLocation(location);
     }
@@ -50,6 +52,12 @@ public class Department {
     public void workEmployees() {
         for (int i = 0; i < currentIndex; i++) {
             employees[i].work(); //current employee -> work
+        }
+    }
+
+    public void payEmployees() {
+        for (int i = 0; i < currentIndex; i++) {
+            employees[i].pay(); //current employee -> pay
         }
     }
 
@@ -77,6 +85,7 @@ public class Department {
 
     //log department
     public String toString() {
-        return "Department: name=" + getName() + ", location=" + getLocation();
+        return "Department: name=" + getName() +
+                ", location=" + getLocation();
     }
 }
