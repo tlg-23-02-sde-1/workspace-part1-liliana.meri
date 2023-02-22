@@ -20,7 +20,8 @@ public class HourlyEmployee extends Employee {
     public HourlyEmployee() {
     }
 
-    public HourlyEmployee(String name, LocalDate hireDate) {
+    public HourlyEmployee(String name, LocalDate hireDate)
+            throws IllegalArgumentException {
         super(name, hireDate);  // delegate to superclass ctor for name, hireDate
     }
 
