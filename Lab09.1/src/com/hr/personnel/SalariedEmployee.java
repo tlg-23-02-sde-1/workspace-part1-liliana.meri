@@ -1,13 +1,12 @@
 package com.hr.personnel;
-
 import gov.irs.TaxPayer;
-
 import java.time.LocalDate;
 
 public class SalariedEmployee extends Employee {
     private double salary;
+    double STANDARD_DEDUCTION = 2500.5;
 
-    //ctors, super ctor
+    //ctors, super ctor----------------------
     public SalariedEmployee() {
         super(); // super is in here even if you dont write it
     }
@@ -22,7 +21,7 @@ public class SalariedEmployee extends Employee {
         setSalary(salary);
     }
 
-    //methods
+    //methods----------------------------
     @Override
     public void pay() {
         System.out.println(getName() + " is paid salary " + getSalary());
@@ -43,7 +42,12 @@ public class SalariedEmployee extends Employee {
         System.out.println("Return filed electronically");
     }
 
-    //getters/setters
+    @Override // interface TaxPayer
+    public double getStandardDeduction() {
+        return STANDARD_DEDUCTION;
+    }
+
+    //getters/setters-----------------------
     public double getSalary() {
         return salary;
     }
@@ -52,7 +56,7 @@ public class SalariedEmployee extends Employee {
         this.salary = salary;
     }
 
-    //to string employee
+    //to string employee---------------------
     @Override
     public String toString() {
         return super.toString() + ", salary=" + getSalary();

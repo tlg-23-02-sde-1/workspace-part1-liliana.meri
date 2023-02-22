@@ -1,14 +1,14 @@
 package com.hr.personnel;
-
 import gov.irs.TaxPayer;
-
 import java.time.LocalDate;
+
 
 public class HourlyEmployee extends Employee {
     private double rate;
     private double hours;
+    double STANDARD_DEDUCTION = 867.9;
 
-    //ctors, super ctor
+    //ctors, super ctor------------------
     public HourlyEmployee() {
         super();
     }
@@ -23,7 +23,7 @@ public class HourlyEmployee extends Employee {
         setHours(hours);
     }
 
-    //methods
+    //methods-----------------------------
     @Override
     public void pay() {
         System.out.println(getName() + " is paid hourly " + (getRate() * getHours()));
@@ -35,7 +35,12 @@ public class HourlyEmployee extends Employee {
         System.out.println(getName() + " paid taxes of " + taxes);
     }
 
-    //getters/setters
+    @Override // interface TaxPayer
+    public double getStandardDeduction() {
+        return STANDARD_DEDUCTION;
+    }
+
+    //getters/setters------------------------
     public double getRate() {
         return rate;
     }
@@ -52,7 +57,7 @@ public class HourlyEmployee extends Employee {
         this.hours = hours;
     }
 
-    // toString employee
+    // toString employee---------------------
     @Override
     public String toString() {
         return super.toString() + ", rate=" + getRate() + ", hours=" + getHours();
