@@ -14,13 +14,15 @@ package gov.irs;
  * Note the interface type TaxPayer, used throughout the class.
  */
 public class IRS {
-    // what types of objects can this array contain?
+    // what types of objects can this array contain? Array of inter types
     private TaxPayer[] payers = new TaxPayer[100];
     private int currentIndex = 0;  // for dealing with the array
 
     public void collectTaxes() {
         for (int i = 0; i < currentIndex; i++) {
+            payers[i].fileReturn();
             payers[i].payTaxes();
+            System.out.println();
         }
     }
     

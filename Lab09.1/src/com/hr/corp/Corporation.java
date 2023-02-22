@@ -16,13 +16,19 @@ import gov.irs.TaxPayer;
 public class Corporation implements TaxPayer {
     private String name;
 
-    public Corporation(String name) {
+    public Corporation(String name) { // taxPayer
         setName(name);
     }
 
     @Override  // interface TaxPayer
     public void payTaxes() {
         System.out.println(getName() + " paid no taxes - we lobbied hard and it worked");
+    }
+
+    // can OPT to override
+    @Override // interface taxPayer
+    public void fileReturn() {
+        System.out.println("Return not filed - we sent our lawyers instead");
     }
 
     public String getName() {

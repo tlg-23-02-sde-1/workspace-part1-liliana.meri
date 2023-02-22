@@ -1,5 +1,7 @@
 package com.hr.personnel;
 
+import gov.irs.TaxPayer;
+
 import java.time.LocalDate;
 
 public class HourlyEmployee extends Employee {
@@ -25,6 +27,12 @@ public class HourlyEmployee extends Employee {
     @Override
     public void pay() {
         System.out.println(getName() + " is paid hourly " + (getRate() * getHours()));
+    }
+
+    @Override  // interface TaxPayer
+    public void payTaxes() {
+        double taxes = getRate() * getHours() * TaxPayer.HOURLY_TAX_RATE;
+        System.out.println(getName() + " paid taxes of " + taxes);
     }
 
     //getters/setters
