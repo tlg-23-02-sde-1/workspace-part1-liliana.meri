@@ -2,6 +2,8 @@ package com.duckrace;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 class DuckRacer {
@@ -39,8 +41,10 @@ class DuckRacer {
         return rewards.size(); // begin at 0
     }
 
+    // NOTE: we are  returning a read-only view of our List<Reward>
+    //client cant mess with it (add/remove/clear) but is "live" view
     public List<Reward> getRewards() {
-        return rewards;
+        return Collections.unmodifiableList(rewards); // Collections.unmodifiableList();
     }
 
     @Override
