@@ -10,6 +10,7 @@ package com.javatunes.catalog;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 // OF COURSE THIS CLASS DOESN'T COMPILE
@@ -38,6 +39,55 @@ public class InMemoryCatalog implements Catalog {
         new MusicItem(18L, "Escape",                    "Journey",                   "1981-02-25", 11.97, MusicCategory.CLASSIC_ROCK))
     );
 
+    // Interface methods required by Catalog "contract"
+
+    @Override // find by id
+    public MusicItem findById(Long id) { // what if a 12 came in here
+        MusicItem result = null; // declare return
+
+        for(MusicItem item : catalogData){ //iterate over catalogData, ask each if it matches id
+            if (item.getId().equals(id)){ // we found it
+                result = item;
+            }
+        }
+        return result;
+    }
+
+    @Override // find by keyword
+    public Collection<MusicItem> findByKeyword(String keyword) {
+        Collection<MusicItem> result = new ArrayList<>(); // return value of MusicItem
+
+        for (MusicItem item : catalogData) {
+            if (item.getTitle().equalsIgnoreCase(keyword) ||
+                    item.getArtist().equalsIgnoreCase(keyword)){
+                result.add(item);
+            }
+        }
+      return result;
+    }
+
+    @Override // find by Category
+    public Collection<MusicItem> findByCategory(MusicCategory category) {
+        Collection<MusicItem> result = new ArrayList<>(); // declare return value,
+
+        for (MusicItem item : catalogData ) {
+            if (item.getMusicCategory().equals(category)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    @Override // get collection size
+    public int size() {
+        return catalogData.size();
+    }
+
+    @Override // get all collection items
+    public Collection<MusicItem> getAll() {
+        return Collections.unmodifiableCollection(catalogData);
+    }
+
 
     /**
      * After you've satisfied your contractual obligations above, do these additional tasks.
@@ -65,21 +115,50 @@ public class InMemoryCatalog implements Catalog {
      * TASK: find all MusicItems where title is same as artist.
      * For example, Madonna's first album is simply titled, "Madonna."
      */
-
+    public Collection<MusicItem> findSelfTitled(String name) {
+        Collection<MusicItem> result = new ArrayList<>();
+        for(MusicItem item : catalogData) {
+            if(item.getTitle().equalsIgnoreCase(name)){
+                result.add(item);
+            }
+        }
+        return result;
+    }
 
     /**
      * TASK: find all "rock" items whose price is less than or equal to the specified price.
      */
-
+    public Collection<MusicItem> findRockBottom(double maxPrice){ // the client specified
+            Collection<MusicItem> result = new ArrayList<>();
+            for(MusicItem item : catalogData) {
+                if(item.getPrice() <= maxPrice &&
+                        item.getMusicCategory().equals(MusicCategory.ROCK)){
+                    result.add(item);
+                }
+            }
+            return result;
+        }
 
     /**
      * TASK: how many items of the specified genre (MusicCategory) do we sell?
      */
-
+    public int genreCount(MusicCategory category) { // input category to get count
+       int result = 0;
+       for (MusicItem item : catalogData){
+           if (item.getMusicCategory().equals(category)){
+               result = catalogData.size();
+           }
+       }
+       return result;
+    }
 
     /**
      * TASK: determine average price of our low-cost, extensive catalog of music.
      */
+    public double averageCOst() {
+        double result = 0.0; // getPrice()
+        return result;
+    }
 
 
     /**
@@ -91,11 +170,19 @@ public class InMemoryCatalog implements Catalog {
      * TASK: find the average price of items in the specified genre (MusicCategory).
      */
 
-
     /**
-     * TASK: are all items priced at least $10?
+     * TASK: are all items priced at least $10? (not hardcoded, client will specify)
      * This is a yes/no answer.
      */
+    public boolean isAtLeast(double minPrice) {
+       boolean result = false;
+       for (MusicItem item : catalogData) {
+           if(item.getPrice() >= minPrice){
+               result = true;
+           }
+       }
+       return result;
+    }
 
 
     /**
